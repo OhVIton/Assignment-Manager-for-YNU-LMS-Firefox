@@ -193,19 +193,20 @@ function saveToStorage(assignments) {
     for (const assignment of assignments) {
         let record = {}
         record[assignment.id] = assignment
-        chrome.storage.sync.set(record)
+        browser.storage.local.set(record)
     }
 }
 
 async function loadFromStorage() {
-    return new Promise(resolve => {chrome.storage.sync.get(null, (data) => {
+    return new Promise(resolve => {browser.storage.local.get(null, (data) => {
         resolve(Object.values(data))
     })})
 }
 
 async function loadIDsFromStorage() {
     return new Promise(resolve => {
-        chrome.storage.sync.get(null, (data) => {
+        let getStorage = browser.storage.local.get(null)
+        getStorage.then((data) => {
             let assignmentIDs = Object.values(data).map(a => a['id'])
             resolve(assignmentIDs)
         })

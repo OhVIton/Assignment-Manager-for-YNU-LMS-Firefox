@@ -57,9 +57,10 @@ function getIconURLFromID(hw_name) {
 function injectAssignmentTable() {
     const DISPLAY_LIMIT_DAYS = 21
 
-    chrome.storage.sync.get(null, (data) => {
+    let getAssignments = browser.storage.local.get(null)
+    getAssignments.then((data) => {
         assignments = Object.values(data)
-        // Cannot sort items outside chrome.storage.sync.get
+
         assignments.sort((a, b) => new Date(a['due']) - new Date(b['due']))
 
         let bannerElem = document.createElement('div')
@@ -133,7 +134,7 @@ function injectAssignmentTable() {
                 let removeButton = document.createElement('button')
                 removeButton.innerText = REMOVE_TXT
                 removeButton.addEventListener('click', () => {
-                    chrome.storage.sync.remove(assignment['id'], () => {
+                    browser.storage.local.remove(assignment['id'], () => {
                         removeButton.parentElement.innerHTML = `<p>${WELLDONE_TXT}</p>`
                     })
                 })

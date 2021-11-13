@@ -29,14 +29,15 @@ function getLanguage() {
 
 async function loadFromStorage() {
     let assignments = []
-    chrome.storage.sync.get(null, (data) => {
+    let getAssignment = browser.storage.sync.get(null)
+    getAssignment.then((data) => {
         for (const assignment of Object.values(data)) {
             assignments.push(assignment)
         }
     })
 }
 
-function injectAssignmentTable(assignments) {
+function injectAssignmentTable() {
     const DISPLAY_LIMIT_DAYS = 21
 
     let listBlockElem = document.createElement('div')
@@ -60,7 +61,8 @@ function injectAssignmentTable(assignments) {
     tbody.appendChild(columns)
 
 
-    chrome.storage.sync.get(null, (data) => {
+    let getAssignment = browser.storage.local.get(null)
+    getAssignment.then((data) => {
         let assignments = Object.values(data)
         assignments.sort((a, b) => new Date(a['due']) - new Date(b['due']))
 
@@ -105,7 +107,7 @@ function injectAssignmentTable(assignments) {
                 assignment['isVisible'] = showCheckbox.checked
                 var keypair = {}
                 keypair[assignment['id']] = assignment
-                chrome.storage.sync.set(keypair)
+                browser.storage.local.set(keypair)
             })
             showColumn.appendChild(showCheckbox)
 

@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Assignment Manager for YNU LMS",
   "short_name": "ExtOfLMS",
   "description": "Manage your homework easily",
@@ -10,8 +10,14 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "OhVIton@github.com",
+      "strict_min_version": "53.0"
+    }
   },
   "content_scripts": [
     {
