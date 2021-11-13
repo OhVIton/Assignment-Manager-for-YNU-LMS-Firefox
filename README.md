@@ -1,4 +1,4 @@
-# Assignment-Manager-for-YNU-LMS
+# Assignment-Manager-for-YNU-LMS-Firefox
 
 未提出（再提出）の課題をトップページで簡単に確認できるようにする拡張機能です。 
   
