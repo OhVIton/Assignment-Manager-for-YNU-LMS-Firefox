@@ -20,6 +20,7 @@ DOM操作(データ取得)は講義ページに**手動でアクセスした時�
 
 ## xpiファイルからインストールする場合（開発者向け） 
 Firefox 延長サポート版 (ESR)、Firefox Developer Edition および Nightly バージョンのみ対応  
+release にある xpiファイルをダウンロードして、  
 Firefox の設定エディター (about:config ページ) で xpinstall.signatures.required 設定の値を false に変更することで、アドオン署名の強制を無効にしてインストールしてね
 
 これで完了。おめでとう。  
